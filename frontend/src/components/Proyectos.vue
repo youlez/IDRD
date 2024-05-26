@@ -41,7 +41,7 @@
                       <v-col cols="12" class="pa-2 pb-0">
                         <v-text-field
                           v-model="form.nombre"
-                          :rules="rules"
+                          :rules="rules_nombre"
                           label="Nombre"
                         ></v-text-field>
                       </v-col>
@@ -195,6 +195,7 @@ export default {
     select_departamento: [],
     select_ciudad: [],
     rules: [(value) => vm.checkApi(value)],
+    rules_nombre: [(value) => vm.checkNombre(value)],
     url: "http://localhost/IDRD/backend/public/api/",
   }),
 
@@ -262,6 +263,21 @@ export default {
     async checkApi(value) {
       return new Promise((resolve) => {
         if (!value) return resolve("Campo Requerido");
+        return resolve(true);
+      });
+    },
+
+    async checkNombre(value) {
+      return new Promise((resolve) => {
+        if (!value) return resolve("Campo Requerido");
+        let campo = this.proyectos.filter(
+          (val) => val.nombre.trim() === value.trim()
+        );
+        if (
+          (this.index == -1 && campo.length > 0) ||
+          (this.index != -1 && campo.length > 0 && campo[0].id != this.form.id)
+        )
+          return resolve("Este nombre ya existe");
         return resolve(true);
       });
     },

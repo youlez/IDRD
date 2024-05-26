@@ -40,14 +40,14 @@
                       <v-col cols="12" class="pa-2 pb-0">
                         <v-text-field
                           v-model="form.codigo"
-                          :rules="rules"
+                          :rules="rules_codigo"
                           label="Código"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" class="pa-2 pb-0">
                         <v-text-field
                           v-model="form.nombre"
-                          :rules="rules"
+                          :rules="rules_nombre"
                           label="Nombre"
                         ></v-text-field>
                       </v-col>
@@ -200,6 +200,8 @@ export default {
     },
     select_unidad: [],
     rules: [(value) => vm.checkApi(value)],
+    rules_nombre: [(value) => vm.checkNombre(value)],
+    rules_codigo: [(value) => vm.checkCodigo(value)],
     url: "http://localhost/IDRD/backend/public/api/",
   }),
 
@@ -254,6 +256,34 @@ export default {
     async checkApi(value) {
       return new Promise((resolve) => {
         if (!value) return resolve("Campo Requerido");
+        return resolve(true);
+      });
+    },
+
+    async checkNombre(value) {
+      return new Promise((resolve) => {
+        if (!value) return resolve("Campo Requerido");
+        let campo = this.materiales.filter(
+          (val) => val.nombre.trim() === value.trim()
+        );
+        if (
+          (this.index == -1 && campo.length > 0) ||
+          (this.index != -1 && campo.length > 0 && campo[0].id != this.form.id)
+        )
+          return resolve("Este nombre ya existe");
+        return resolve(true);
+      });
+    },
+
+    async checkCodigo(value) {
+      return new Promise((resolve) => {
+        if (!value) return resolve("Campo Requerido");
+        let campo = this.materiales.filter((val) => val.codigo === value);
+        if (
+          (this.index == -1 && campo.length > 0) ||
+          (this.index != -1 && campo.length > 0 && campo[0].id != this.form.id)
+        )
+          return resolve("Este código ya existe");
         return resolve(true);
       });
     },
