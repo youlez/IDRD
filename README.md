@@ -1,6 +1,7 @@
 <h1 style="text-align: center">REPOSITORIO PARA PRUEBA TÉNICA IDRD</h1>
 <i>Por: Karent Pinzon</i>
 <br>
+<br>
 <p>
   Los frameworks utilizados en este prueba son los siguientes: vue 3 como
   frontend
