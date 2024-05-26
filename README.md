@@ -20,13 +20,13 @@
 </p>
 <li>
   Clonar repositorio con el comando:
-  <span class="code">
-    git clone
-    <a target="_blank" href="https://github.com/youlez/IDRD.git  "
-      >https://github.com/youlez/IDRD.git</a
-    ></span
-  >
 </li>
+<br>
+
+```
+    git clone https://github.com/youlez/IDRD.git
+```
+
 <li>
   Agregar el archivo <i>.env</i> en la carpeta de <b><i>backend</i></b
   >, colocando los datos de la base de datos:
