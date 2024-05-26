@@ -19,7 +19,7 @@
   puertos se debe realizar los siguientes pasos:
 </p>
 <li>
-  Clonar repositorio con el comando:
+  Abrir una terminal y lonar repositorio con el siguiente comando:
 </li>
 <br>
 
@@ -43,8 +43,7 @@ DB_PASSWORD=
 ```
 
 <li>
-  Abrir una terminal de la carpeta clonada, entrar a la carpeta
-  <b><i>backend</i></b> y ejecutar el comando:  
+  Entrar a la carpeta <b><i>backend</i></b> y ejecutar el comando:  
 </li>
 <br>
 
@@ -53,7 +52,16 @@ composer update
 ```
 
 <li>
-  En la misma terminal devolver una carpeta y entrar a la carpeta
+  Ejecutar el comando:  
+</li>
+<br>
+
+```
+php artisan migrate:fresh --seed
+```
+
+<li>
+  Devolverse una carpeta y entrar a la carpeta
   <b><i>frontend</i></b> y ejecutar el comando:
 </li>
 <br>
