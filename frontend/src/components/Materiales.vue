@@ -59,7 +59,7 @@
                         ></v-textarea>
                       </v-col>
                       <v-col cols="12" class="pa-2 pb-0">
-                        <v-select
+                        <v-autocomplete
                           v-model="form.unidad_id"
                           :items="select_unidad"
                           item-title="nombre"
@@ -67,7 +67,7 @@
                           :rules="rules"
                           label="Unidad"
                           required
-                        ></v-select>
+                        ></v-autocomplete>
                       </v-col>
                       <v-col cols="12" class="pa-2 pb-0">
                         <v-number-input

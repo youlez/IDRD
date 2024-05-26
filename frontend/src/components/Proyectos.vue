@@ -46,7 +46,7 @@
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" class="pa-2 pb-0">
-                        <v-select
+                        <v-autocomplete
                           v-model="form.departamento_id"
                           :items="select_departamento"
                           item-title="nombre"
@@ -58,10 +58,10 @@
                             getSelectCiudad(`${form.departamento_id}`);
                           "
                           required
-                        ></v-select>
+                        ></v-autocomplete>
                       </v-col>
                       <v-col cols="12" class="pa-2 pb-0">
-                        <v-select
+                        <v-autocomplete
                           v-model="form.ciudad_id"
                           :items="select_ciudad"
                           item-title="nombre"
@@ -69,7 +69,7 @@
                           :rules="rules"
                           label="Ciudad"
                           required
-                        ></v-select>
+                        ></v-autocomplete>
                       </v-col>
                     </v-row>
                   </v-container>

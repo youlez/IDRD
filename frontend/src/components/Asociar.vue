@@ -38,7 +38,7 @@
                   <v-container>
                     <v-row>
                       <v-col cols="12" class="pa-2 pb-0">
-                        <v-select
+                        <v-autocomplete
                           v-model="form.material_id"
                           :items="select_material"
                           item-title="codigo"
@@ -46,7 +46,7 @@
                           :rules="rules"
                           label="Material"
                           required
-                        ></v-select>
+                        ></v-autocomplete>
                       </v-col>
                     </v-row>
                   </v-container>
