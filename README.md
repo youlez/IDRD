@@ -55,8 +55,13 @@ composer update
 <li>
   En la misma terminal devolver una carpeta y entrar a la carpeta
   <b><i>frontend</i></b> y ejecutar el comando:
-  <span class="code">npm install</span>
 </li>
+<br>
+
+```
+npm install
+```
+
 <li>
   Como es un ambiente local se puede ejecutar el comando:
 </li>
