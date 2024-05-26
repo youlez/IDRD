@@ -47,15 +47,6 @@ DB_PASSWORD=
 <br>
 
 ```
-composer update
-```
-
-<li>
-  Ejecutar el comando:  
-</li>
-<br>
-
-```
 php artisan migrate:fresh --seed
 ```
 
