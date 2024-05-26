@@ -42,7 +42,16 @@ DB_PASSWORD=
 ```
 
 <li>
-  Desde la terminal, entrar a la carpeta <b><i>IDRD/backend</i></b> y ejecutar el comando:  
+  Entrar a la carpeta <b><i>backend</i></b> y ejecutar el comando:  
+</li>
+<br>
+
+```
+composer update
+```
+
+<li>
+  Ejecutar el comando:  
 </li>
 <br>
 
