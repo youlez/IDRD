@@ -18,7 +18,7 @@
   <a href="http://localhost/" target="_blank">http://localhost/</a>, se debe realizar los siguientes pasos:
 </p>
 <li>
-  Abrir una terminal y lonar repositorio con el siguiente comando:
+  Abrir una terminal y clonar el repositorio con el siguiente comando:
 </li>
 <br>
 
