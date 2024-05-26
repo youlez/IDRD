@@ -41,7 +41,7 @@
                         <v-autocomplete
                           v-model="form.material_id"
                           :items="select_material"
-                          item-title="codigo"
+                          item-title="codigo_nombre"
                           item-value="id"
                           :rules="rules"
                           label="Material"
@@ -100,7 +100,7 @@
                 <v-btn
                   color="blue-darken-1"
                   variant="text"
-                  @click="ToogleItemConfirm(this.form.id)"
+                  @click="deleteItemConfirm(this.form.id)"
                   >Si</v-btn
                 >
                 <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
@@ -118,7 +118,7 @@
           elevation="4"
           variant="text"
           type="submit"
-          @click="ToogleItem(item)"
+          @click="deleteItem(item)"
         >
           Desasociar
         </v-btn>
@@ -142,12 +142,12 @@ export default {
       {
         title: "Código",
         align: "start",
-        key: "codigo",
+        key: "materiales.codigo",
       },
-      { title: "Nombre", key: "nombre" },
-      { title: "Descripción", key: "descripcion" },
-      { title: "Unidad", key: "nombre_unidad.nombre" },
-      { title: "Precio", key: "precio" },
+      { title: "Nombre", key: "materiales.nombre" },
+      { title: "Descripción", key: "materiales.descripcion" },
+      { title: "Unidad", key: "materiales.nombre_unidad.nombre" },
+      { title: "Precio", key: "materiales.precio" },
       { title: "Acciones", key: "actions", sortable: false },
     ],
     materiales: [],
@@ -155,10 +155,12 @@ export default {
     form: {
       id: null,
       material_id: null,
+      proyecto_id: null,
     },
     defaultForm: {
       id: null,
       material_id: null,
+      proyecto_id: null,
     },
     select_material: [],
     rules: [(value) => vm.checkApi(value)],
@@ -189,17 +191,20 @@ export default {
 
   methods: {
     initialize() {
+      console.log(this.proyecto_id);
       axios
-        .get(this.url + "getMaterialesByProyecto/" + this.proyecto_id)
+        .get(this.url + "getAsociacionesByProyecto/" + this.proyecto_id)
         .then((response) => {
           this.materiales = response.data;
         });
       this.select_material = [];
-      axios.get(this.url + "getSelectMaterial").then((response) => {
-        for (let parametro of response.data) {
-          this.select_material.push(parametro);
-        }
-      });
+      axios
+        .get(this.url + "getSelectMaterial/" + this.proyecto_id)
+        .then((response) => {
+          for (let parametro of response.data) {
+            this.select_material.push(parametro);
+          }
+        });
     },
 
     async checkApi(value) {
@@ -209,22 +214,16 @@ export default {
       });
     },
 
-    ToogleItem(item) {
+    deleteItem(item) {
       this.index = this.materiales.indexOf(item);
       this.form = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
-    ToogleItemConfirm(id) {
-      this.form.proyecto_id = null;
-      this.form.material_id = id;
-      axios
-        .post(this.url + "toogleProyecto", {
-          form: this.form,
-        })
-        .then(() => {
-          this.initialize();
-        });
+    deleteItemConfirm(id) {
+      axios.delete(this.url + "asociaciones/" + id).then(() => {
+        this.initialize();
+      });
       this.closeDelete();
     },
 
@@ -248,15 +247,11 @@ export default {
       let results = await event;
       if (results.valid) {
         this.form.proyecto_id = this.proyecto_id;
-        axios
-          .post(this.url + "toogleProyecto", {
-            form: this.form,
-          })
-          .then(() => {
-            this.initialize();
-            this.close();
-            this.dialogCorrect = true;
-          });
+        axios.post(this.url + "asociaciones", this.form).then(() => {
+          this.initialize();
+          this.close();
+          this.dialogCorrect = true;
+        });
       }
     },
   },

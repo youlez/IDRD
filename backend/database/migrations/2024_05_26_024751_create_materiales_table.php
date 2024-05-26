@@ -20,8 +20,6 @@ class CreateMaterialesTable extends Migration
             $table->text("descripcion");
             $table->unsignedBigInteger('unidad_id');        
             $table->BigInteger("precio");
-            $table->unsignedBigInteger('proyecto_id')->nullable();             
-            $table->foreign('proyecto_id')->references('id')->on('proyectos')->nullable();
             $table->timestamps();
         });
     }

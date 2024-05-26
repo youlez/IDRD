@@ -6,6 +6,7 @@ use App\Http\Controllers\MaterialeController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\CiudadeController;
 use App\Http\Controllers\ParametroDetalleController;
+use App\Http\Controllers\AsociacioneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('getSelectParametro/{parametro_id}', [ParametroDetalleController::class, 'getSelectParametro']);
     Route::apiResource('proyectos', ProyectoController::class);
     Route::get('getSelectCiudad/{departamento_id}', [CiudadeController::class, 'getSelectCiudad']);
-    Route::get('getMaterialesByProyecto/{proyecto_id}', [MaterialeController::class, 'getMaterialesByProyecto']);
-    Route::get('getSelectMaterial', [MaterialeController::class, 'getSelectMaterial']);
-    Route::post('toogleProyecto', [MaterialeController::class, 'toogleProyecto']);
+    Route::get('getAsociacionesByProyecto/{proyecto_id}', [AsociacioneController::class, 'getAsociacionesByProyecto']);
+    Route::get('getSelectMaterial/{proyecto_id}', [MaterialeController::class, 'getSelectMaterial']);
+    Route::apiResource('asociaciones', AsociacioneController::class);
 
 });

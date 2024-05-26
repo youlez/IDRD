@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Materiale;
+use App\Models\Asociacione;
 
-class MaterialeController extends Controller
+class AsociacioneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class MaterialeController extends Controller
      */
     public function index()
     {
-        $materiales = Materiale::with('nombreUnidad:nombre,value')->get();
-        return response()->json($materiales, 200);
+        //
     }
 
     /**
@@ -36,8 +35,8 @@ class MaterialeController extends Controller
      */
     public function store(Request $request)
     {
-        Materiale::create($request->all());
-        return response()->json(['message' => 'Material creado exitosamente'], 200);
+        Asociacione::create($request->all());
+        return response()->json(['message' => 'Asociacion creado exitosamente'], 200);
     }
 
     /**
@@ -71,8 +70,7 @@ class MaterialeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Materiale::find($id)->update($request->all());
-        return response()->json(['message' => 'Material actualizado exitosamente'], 200);
+        //
     }
 
     /**
@@ -83,16 +81,14 @@ class MaterialeController extends Controller
      */
     public function destroy($id)
     {
-        Materiale::find($id)->delete();
-        return response()->json(['message' => 'Material eliminado exitosamente'],  200);
+        Asociacione::find($id)->delete();
+        return response()->json(['message' => 'Asociacion eliminado exitosamente'],  200);
     }
 
-    public function getSelectMaterial($proyecto_id)
+    public function getAsociacionesByProyecto($proyecto_id)
     {
-        $materiales = Materiale::whereDoesntHave(
-            'asociaciones', function ($query) use ($proyecto_id) {
-                $query->where('proyecto_id', $proyecto_id);
-            })->get();
-        return response()->json($materiales, 200);
+        $asociacion = Asociacione::with('materiales','materiales.nombreUnidad:nombre,value')
+            ->where('proyecto_id', $proyecto_id)->get();        
+        return response()->json($asociacion, 200);
     }
 }
