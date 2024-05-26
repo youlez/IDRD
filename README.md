@@ -42,7 +42,7 @@ DB_PASSWORD=
 ```
 
 <li>
-  Entrar a la carpeta <b><i>backend</i></b> y ejecutar el comando:  
+  Desde la terminal, entrar a la carpeta <b><i>IDRD/backend</i></b> y ejecutar el comando:  
 </li>
 <br>
 
