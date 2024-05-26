@@ -19,14 +19,14 @@
   puertos se debe realizar los siguientes pasos:
 </p>
 <li>
-  Clonar repositorio con el comando:
-  <span class="code">
-    git clone
-    <a target="_blank" href="https://github.com/youlez/IDRD.git  "
-      >https://github.com/youlez/IDRD.git</a
-    ></span
-  >
+  Abrir una terminal y lonar repositorio con el siguiente comando:
 </li>
+<br>
+
+```
+    git clone https://github.com/youlez/IDRD.git
+```
+
 <li>
   Agregar el archivo <i>.env</i> en la carpeta de <b><i>backend</i></b
   >, colocando los datos de la base de datos:
@@ -43,8 +43,7 @@ DB_PASSWORD=
 ```
 
 <li>
-  Abrir una terminal de la carpeta clonada, entrar a la carpeta
-  <b><i>backend</i></b> y ejecutar el comando:  
+  Entrar a la carpeta <b><i>backend</i></b> y ejecutar el comando:  
 </li>
 <br>
 
@@ -53,10 +52,24 @@ composer update
 ```
 
 <li>
-  En la misma terminal devolver una carpeta y entrar a la carpeta
-  <b><i>frontend</i></b> y ejecutar el comando:
-  <span class="code">npm install</span>
+  Ejecutar el comando:  
 </li>
+<br>
+
+```
+php artisan migrate:fresh --seed
+```
+
+<li>
+  Devolverse una carpeta y entrar a la carpeta
+  <b><i>frontend</i></b> y ejecutar el comando:
+</li>
+<br>
+
+```
+npm install
+```
+
 <li>
   Como es un ambiente local se puede ejecutar el comando:
 </li>
