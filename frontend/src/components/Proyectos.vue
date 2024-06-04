@@ -146,6 +146,9 @@
         <v-icon class="me-2" size="small" @click="deleteItem(item)">
           mdi-delete
         </v-icon>
+        <v-icon class="me-2" size="small" @click="pdfMateriales(item)">
+          mdi-file-document
+        </v-icon>
         <v-btn
           class="bg-orange"
           variant="text"
@@ -343,6 +346,12 @@ export default {
             });
         }
       }
+    },
+
+    pdfMateriales(item) {
+      this.index = this.proyectos.indexOf(item);
+      this.proyecto_id = item.id;
+      window.open(this.url + "pdfMateriales/" + this.proyecto_id);
     },
   },
 };

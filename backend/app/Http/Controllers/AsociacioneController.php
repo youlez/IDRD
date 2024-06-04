@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Asociacione;
+use App\Http\Controllers\ProyectoController;
+use Dompdf\Dompdf;
 
 class AsociacioneController extends Controller
 {
@@ -91,4 +93,30 @@ class AsociacioneController extends Controller
             ->where('proyecto_id', $proyecto_id)->get();        
         return response()->json($asociacion, 200);
     }
+
+    public function pdfMateriales($proyecto_id)
+    {
+        $materiales = $this->getAsociacionesByProyecto($proyecto_id);
+        $proyectoController = new ProyectoController();
+        $proyecto = $proyectoController->show($proyecto_id);
+
+        $datos = [
+            'proyecto' => $proyecto,
+            'materiales' => json_decode(json_encode($materiales->original))
+        ];
+
+        $view = view('pdf_materiales', $datos)->render();
+        $pdf = new Dompdf();
+        $pdf->loadHtml($view );
+        
+        // (Optional) Setup the paper size and orientation
+        $pdf->setPaper('A4', 'portrait');
+        
+        // Render the HTML as PDF
+        $pdf->render();
+        
+        // Output the generated PDF to Browser
+        $pdf->stream('Reporte de Materiales.pdf');
+    }
+
 }

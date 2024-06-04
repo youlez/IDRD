@@ -48,7 +48,8 @@ class ProyectoController extends Controller
      */
     public function show($id)
     {
-        //
+        $proyecto = Proyecto::with('nombreDepartamento:nombre,value','nombreCiudad:nombre,id')->find($id);
+        return $proyecto;
     }
 
     /**

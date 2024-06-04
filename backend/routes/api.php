@@ -31,5 +31,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('getAsociacionesByProyecto/{proyecto_id}', [AsociacioneController::class, 'getAsociacionesByProyecto']);
     Route::get('getSelectMaterial/{proyecto_id}', [MaterialeController::class, 'getSelectMaterial']);
     Route::apiResource('asociaciones', AsociacioneController::class);
+    Route::get('pdfMateriales/{proyecto_id}', [AsociacioneController::class, 'pdfMateriales']);
 
 });
