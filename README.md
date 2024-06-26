@@ -1,6 +1,7 @@
 <h1 style="text-align: center">REPOSITORIO PARA PRUEBA TÉNICA IDRD</h1>
 <i>Por: Karent Pinzon</i>
 <br>
+<br>
 <p>
   Los frameworks utilizados en este prueba son los siguientes: vue 3 como
   frontend
@@ -42,7 +43,7 @@ DB_PASSWORD=
 ```
 
 <li>
-  Entrar a la carpeta <b><i>backend</i></b> y ejecutar el comando:  
+  Desde la terminal, entrar a la carpeta <b><i>IDRD/backend</i></b> y ejecutar el comando:  
 </li>
 <br>
 
